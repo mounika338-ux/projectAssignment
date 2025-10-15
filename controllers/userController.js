@@ -1,4 +1,4 @@
-import { User } from "../models/user.js";
+import  User  from "../models/user.js";
 
 // Get All Users from DB (Should Be Done Only By Admin)
 export const getUsers = async(req,res)=>{
