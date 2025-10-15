@@ -20,8 +20,8 @@ const options={
             securitySchemes:{
                 bearerAuth:{
                     type:"http",
-                    schema:"bearer",
-                    bearerFormat:"Jwt",
+                    scheme:"bearer",
+                    bearerFormat:"JWT",
                 },
             },
         },
