@@ -18,6 +18,6 @@ app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 connectDB().then(()=>{
     app.listen(PORT,()=>{
         console.log(`App running on port:${PORT}`);
-        console.log(`Swagger Docs ->http://localhost:${port}/api-docs`);
+        console.log(`Swagger Docs ->http://localhost:${PORT}/api-docs`);
     });
 });
