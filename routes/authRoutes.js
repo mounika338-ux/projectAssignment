@@ -81,7 +81,7 @@ import express from "express";
    *           schema:
    *             type: object
    *             properties:
-   *               email:
+   *               username:
    *                 type: string
    *               password:
    *                 type: string
