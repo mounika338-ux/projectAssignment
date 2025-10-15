@@ -5,7 +5,7 @@ export const connectDB=async()=>{
         console.log("mongodb connected successfully");
     }
     catch(err){
-        console.log(" db not connected");
+        console.log(" db not connected",err.message);
         process.exit(1);
     }
 }
