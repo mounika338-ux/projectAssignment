@@ -11,7 +11,7 @@ const options={
             description:"API documentation for Terralogic Task Management backend",
         },
         servers:[{
-            url:"http://localhost:8080",description:"local server"},
+            url:"http://localhost:5000",description:"local server"},
         ],
         components:{
             securitySchemes:{
