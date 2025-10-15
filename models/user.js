@@ -63,16 +63,18 @@ userSchema.pre("save",async function(next){
         next();
     })
     //pre methods
-userSchema.methods.generateJwt=function(){
-    return jwt.sign({
-        id:this._id,
-        email:this.email,
-        role:this.role,
+// ✅ Define the missing function here
+userSchema.methods.generateJWT = function () {
+  return jwt.sign(
+    {
+      id: this._id,
+      username: this.username,
+      role: this.role,
     },
     process.env.JWT_SECRET,
-    {expiresIn:"10d"}
-);
+    { expiresIn: "10d" }
+  );
 };
 
-    
-export const User=mongoose.model("User",userSchema);
+const User = mongoose.model("User", userSchema);
+export default User;

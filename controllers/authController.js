@@ -68,7 +68,7 @@ export const loginUser = async (req, res) => {
   }
 };
 
-
+//logout
 export const logoutUser = async (req, res) => {
   res.status(200).json({
     statusCode: 200,
