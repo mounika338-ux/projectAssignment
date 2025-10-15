@@ -1,21 +1,25 @@
 import  User  from "../models/user.js";
 
 // Get All Users from DB (Should Be Done Only By Admin)
-export const getUsers = async(req,res)=>{
-    try{
-        const users = await User.find({},"-password");//
-        if(users.length === 0){
-            console.log("User Not Found");
-        }
+export const getUsers = async (req, res) => {
+  try {
+    // Only fetch non-deleted users
+    const users = await User.find({ isDeleted: false }, "-password");
 
-        res.status(200)
-        .json({message : "Users Fetched Successfully" , users})
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: "No users found" });
     }
-    catch(err){
-        
-        res.status(500).json({message : "Internal Server Error"});
-    }
-}
+
+    res.status(200).json({
+      message: "Users fetched successfully",
+      users,
+    });
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 
 // Get Only Employees (Should be Done Admin and Manager)
 
