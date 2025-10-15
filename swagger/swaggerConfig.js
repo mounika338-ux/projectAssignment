@@ -13,7 +13,7 @@ const options={
         servers:[{
             url:"http://localhost:5000",description:"local server"},
             {
-            url:"https://projectassignment-ooxs.onrender.com" , description:"Deployment Server"
+            url:"https://projectassignment-wp8m.onrender.com" , description:"Deployment Server"
             }
         ],
         components:{
