@@ -1,0 +1,37 @@
+//swagger.js
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+
+const options={
+    definition:{
+        openapi:"3.0.0",
+        info:{
+            title:"Terralogic Task Management API",
+            version:"1.0.0",
+            description:"API documentation for Terralogic Task Management backend",
+        },
+        servers:[{
+            url:"http://localhost:8080",description:"local server"},
+            {
+                url:"my url",
+                description:"production server",
+            },
+        ],
+        components:{
+            securitySchemes:{
+                bearerAuth:{
+                    type:"http",
+                    schema:"bearer",
+                    bearerFormat:"Jwt",
+                },
+            },
+        },
+
+    },
+    apis:["./routes/*.js"],//path to your route files
+};
+const swaggerSpec=swaggerJsdoc(options);
+export{swaggerUi,swaggerSpec};
+
+        
+    
