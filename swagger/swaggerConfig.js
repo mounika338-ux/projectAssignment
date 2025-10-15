@@ -12,6 +12,9 @@ const options={
         },
         servers:[{
             url:"http://localhost:5000",description:"local server"},
+            {
+            url:"https://project-assignment-3d9p.onrender.com" , description:"Deployment Server"
+            }
         ],
         components:{
             securitySchemes:{
