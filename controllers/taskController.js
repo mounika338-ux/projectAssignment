@@ -85,34 +85,31 @@ export const updateTask = async (req, res) => {
 
     const task = await Task.findById(id);
     if (!task) {
-       res.status(404).json({ message: "Task Not Found" });
+      return res.status(404).json({ message: "Task Not Found" });
     }
 
-    // ✅ Admin can update any task
     if (req.user.role === "admin") {
       const updatedTask = await Task.findByIdAndUpdate(id, updatedTaskData, { new: true });
       return res.status(200).json({ message: "Task Updated Successfully", updatedTask });
     }
 
-    // ✅ Manager can update only tasks they created
+
     if (req.user.role === "manager") {
-      if (!task.assignedBy || task.assignedBy.toString() !== req.user.id) {
+      if (task.assignedBy.toString() !== req.user.id) {
         return res.status(403).json({ message: "Access Denied: Managers can only update their own created tasks" });
       }
       const updatedTask = await Task.findByIdAndUpdate(id, updatedTaskData, { new: true });
       return res.status(200).json({ message: "Task Updated Successfully", updatedTask });
     }
 
-    // ✅ Employee can only update their assigned task status
     if (req.user.role === "employee") {
-      if (!task.assignedTo || task.assignedTo.toString() !== req.user.id) {
+      if (task.assignedTo.toString() !== req.user.id) {
         return res.status(403).json({ message: "Access Denied: You can only update your own task" });
       }
       const updatedTask = await Task.findByIdAndUpdate(id, { status }, { new: true });
       return res.status(200).json({ message: "Task Status Updated Successfully", updatedTask });
     }
 
-    // ✅ If role not found
     return res.status(403).json({ message: "Invalid Role" });
 
   } catch (err) {
@@ -120,6 +117,8 @@ export const updateTask = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
 
 // Delete Task
 
