@@ -85,7 +85,7 @@ export const updateTask = async (req, res) => {
 
     const task = await Task.findById(id);
     if (!task) {
-      return res.status(404).json({ message: "Task Not Found" });
+       res.status(404).json({ message: "Task Not Found" });
     }
 
     // ✅ Admin can update any task
