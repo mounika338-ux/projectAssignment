@@ -96,7 +96,7 @@ export const updateTask = async (req, res) => {
 
     // ✅ Manager can update only tasks they created
     if (req.user.role === "manager") {
-      if (task.assignedBy.toString() !== req.user.id) {
+      if (!task.assignedBy || task.assignedBy.toString() !== req.user.id) {
         return res.status(403).json({ message: "Access Denied: Managers can only update their own created tasks" });
       }
       const updatedTask = await Task.findByIdAndUpdate(id, updatedTaskData, { new: true });
@@ -105,7 +105,7 @@ export const updateTask = async (req, res) => {
 
     // ✅ Employee can only update their assigned task status
     if (req.user.role === "employee") {
-      if (task.assignedTo.toString() !== req.user.id) {
+      if (!task.assignedTo || task.assignedTo.toString() !== req.user.id) {
         return res.status(403).json({ message: "Access Denied: You can only update your own task" });
       }
       const updatedTask = await Task.findByIdAndUpdate(id, { status }, { new: true });
